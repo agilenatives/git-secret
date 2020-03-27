@@ -10,6 +10,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: docker login -u ${DOCKERHUB_REGISTRY_USERNAME} -p ${DOCKERHUB_REGISTRY_PASSWORD}
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_REGISTRY_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_REGISTRY_PASSWORD }}
     - run: docker build . --file Dockerfile --tag ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:$(git rev-parse --short "$GITHUB_SHA") --tag ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:latest
-    - run: docker push docker push ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:$(git rev-parse --short "$GITHUB_SHA") 
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_REGISTRY_USERNAME }}
+    - run: docker push docker push ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:$(git rev-parse --short "$GITHUB_SHA")
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_REGISTRY_USERNAME }}
     - run: docker push ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:latest
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_REGISTRY_USERNAME }}
