@@ -9,16 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: docker login -u ${DOCKERHUB_REGISTRY_USERNAME} -p ${DOCKERHUB_REGISTRY_PASSWORD}
+    - run: docker login -u agilenatives -p ${DOCKERHUB_TOKEN}
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_REGISTRY_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_REGISTRY_PASSWORD }}
-    - run: docker build . --file Dockerfile --tag ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:$(git rev-parse --short "$GITHUB_SHA") --tag ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:latest
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_REGISTRY_USERNAME }}
-    - run: docker push docker push ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:$(git rev-parse --short "$GITHUB_SHA")
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_REGISTRY_USERNAME }}
-    - run: docker push ${DOCKERHUB_REGISTRY_USERNAME}/git-secret:latest
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_REGISTRY_USERNAME }}
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    - run: docker build . --file Dockerfile --tag agilenatives/git-secret:$(git rev-parse --short "$GITHUB_SHA") --tag agilenatives/git-secret:latest
+    - run: docker push docker push agilenatives/git-secret:$(git rev-parse --short "$GITHUB_SHA")
+    - run: docker push agilenatives/git-secret:latest
