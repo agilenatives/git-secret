@@ -9,4 +9,5 @@ RUN wget -qO - https://api.bintray.com/users/sobolevn/keys/gpg/public.key | apt-
 RUN apt-get update -y \
 && apt-get install git-secret -y
 
-ADD .bashrc /root/.bashrc
+ADD HOWTO /HOWTO
+RUN echo "cat /HOWTO" > /root/.bashrc
