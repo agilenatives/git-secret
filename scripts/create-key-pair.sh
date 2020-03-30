@@ -23,4 +23,4 @@ gpg --list-secret-keys
 
 mkdir -p keys
 gpg --batch --export --armor ${EMAIL} > keys/public.gpg
-gpg --batch --export-secret-keys --armor --passphrase ${EMAIL} > keys/private.gpg
+gpg --batch --export-secret-keys --armor ${EMAIL} > keys/private.gpg
