@@ -1,3 +1,10 @@
+---
 Welcome to git-secret
 
-This will contain maybe some instructions for you later.
+0) create a key pair if not present -> 'create-key-pair.sh'
+1) import a key pair -> 'gpg --import keys/private.gpg'
+2) decrypt files -> 'git secret reveal'
+3) encrypt files -> 'git secret hide'
+
+This will contain more instructions for you later.
+---
