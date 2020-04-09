@@ -12,6 +12,6 @@ jobs:
     - run: echo ${DOCKERHUB_TOKEN} | docker login --username agilenatives ---password-stdin
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-    - run: docker build . --file Dockerfile --tag agilenatives/git-secret:$(git rev-parse --short "$GITHUB_SHA") --tag agilenatives/git-secret:latest
-    - run: docker push agilenatives/git-secret:$(git rev-parse --short "$GITHUB_SHA")
+    - run: docker build . --file Dockerfile --tag agilenatives/git-secret:$(git rev-parse --short ${GITHUB_SHA}) --tag agilenatives/git-secret:latest
+    - run: docker push agilenatives/git-secret:$(git rev-parse --short ${GITHUB_SHA})
     - run: docker push agilenatives/git-secret:latest
