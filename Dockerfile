@@ -15,3 +15,5 @@ ENV PATH="/scripts:$PATH"
 
 ADD HOWTO /HOWTO
 RUN echo "cat /HOWTO" > /root/.bashrc
+
+CMD /bin/bash
